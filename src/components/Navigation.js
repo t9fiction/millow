@@ -1,12 +1,15 @@
 import { ethers } from 'ethers';
 import logo from '../assets/logo.svg';
+import { useAppKit } from '@reown/appkit/react'
+import { useAccount } from 'wagmi';
+import { useAppKitAccount } from '@reown/appkit/react';
 
-const Navigation = ({ account, setAccount }) => {
-    const connectHandler = async () => {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const account = ethers.utils.getAddress(accounts[0])
-        setAccount(account);
-    }
+const Navigation = () => {
+    const { open } = useAppKit()
+    const { address, isConnected } = useAppKitAccount();
+    console.log(address, "Account")
+
+    const connectHandler = async () => open()
 
     return (
         <nav>
@@ -21,12 +24,13 @@ const Navigation = ({ account, setAccount }) => {
                 <h1>Millow</h1>
             </div>
 
-            {account ? (
+            {isConnected ? (
                 <button
                     type="button"
                     className='nav__connect'
+                    onClick={connectHandler}
                 >
-                    {account.slice(0, 6) + '...' + account.slice(38, 42)}
+                    {address.slice(0, 6) + '...' + address.slice(38, 42)}
                 </button>
             ) : (
                 <button
