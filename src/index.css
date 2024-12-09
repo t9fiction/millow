@@ -124,6 +124,7 @@ header {
   min-width: 40%;
 
   position: absolute;
+  margin-top: 12px;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
