@@ -24,7 +24,6 @@ function App() {
   
   const { address, isConnected } = useAppKitAccount();
   
-  const [provider, setProvider] = useState(null)
   const [escrow, setEscrow] = useState(null)
 
   const [account, setAccount] = useState(null)
@@ -34,15 +33,9 @@ function App() {
   const [toggle, setToggle] = useState(false);
   
   const loadBlockchainData = async () => {
-    // const provider = new ethers.providers.Web3Provider(window.ethereum)
-    // setProvider(provider)
-    // const network = await provider.getNetwork()
-    
-    // const realEstate = new ethers.Contract(config[network.chainId].realEstate.address, RealEstate, provider)
-    // Function to fetch token balances
+
     const chainId = await getChainId(publicClient); 
     
-    // const totalSupply = await realEstate.totalSupply()
     const _addressRealEstateContract = await config[chainId].realEstate.address;
     console.log(_addressRealEstateContract)
     const totalSupply = await readContract(config2, {
@@ -50,14 +43,14 @@ function App() {
       address: _addressRealEstateContract,
       functionName: 'totalSupply',
     })
-    console.log(totalSupply,"Total Supply")
+
     const homes = []
 
     
 
     for (var i = 1; i <= totalSupply; i++) {
       // const uri = await realEstate_Contract.tokenURI(i)
-      const uri = await await readContract(config2, {
+      const uri = await readContract(config2, {
         abi: realEstateABI,
         address: _addressRealEstateContract,
         args: [i],
@@ -71,15 +64,6 @@ function App() {
     }
 
     setHomes(homes)
-
-    // const escrow = new ethers.Contract(config[network.chainId].escrow.address, Escrow, provider)
-    // setEscrow(escrow)
-
-    // window.ethereum.on('accountsChanged', async () => {
-    //   const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    //   const account = ethers.utils.getAddress(accounts[0])
-    //   setAccount(account);
-    // })
   }
 
   useEffect(() => {
@@ -93,7 +77,7 @@ function App() {
 
   return (
     <div>
-      <Navigation account={account} setAccount={setAccount} />
+      <Navigation />
       <Search />
 
       <div className='cards__section'>
@@ -124,7 +108,7 @@ function App() {
       </div>
 
       {toggle && (
-        <Home home={home} provider={provider} account={account} escrow={escrow} togglePop={togglePop} />
+        <Home home={home} togglePop={togglePop} />
       )}
 
     </div>
