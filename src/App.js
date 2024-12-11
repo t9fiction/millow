@@ -43,7 +43,8 @@ function App() {
     const chainId = await getChainId(publicClient); 
     
     // const totalSupply = await realEstate.totalSupply()
-    const _addressRealEstateContract = config[chainId].realEstate.address;
+    const _addressRealEstateContract = await config[chainId].realEstate.address;
+    console.log(_addressRealEstateContract)
     const totalSupply = await readContract(config2, {
       abi: realEstateABI,
       address: _addressRealEstateContract,
@@ -54,7 +55,7 @@ function App() {
 
     
 
-    for (var i = 1; i <= 1; i++) {
+    for (var i = 1; i <= totalSupply; i++) {
       // const uri = await realEstate_Contract.tokenURI(i)
       const uri = await await readContract(config2, {
         abi: realEstateABI,
@@ -69,7 +70,7 @@ function App() {
       homes.push(metadata)
     }
 
-    // setHomes(homes)
+    setHomes(homes)
 
     // const escrow = new ethers.Contract(config[network.chainId].escrow.address, Escrow, provider)
     // setEscrow(escrow)

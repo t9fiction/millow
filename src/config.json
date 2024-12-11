@@ -1,10 +1,18 @@
 {
     "31337": {
         "realEstate": {
-            "address": "0xD69BC314bdaa329EB18F36E4897D96A3A48C3eeF"
+            "address": "0x5147c5C1Cb5b5D3f56186C37a4bcFBb3Cd0bD5A7"
         },
         "escrow": {
-            "address": "0xbB57FE325e769DEDB1236525a91cDEd842143fA7"
+            "address": "0x205Cfc23ef26922E116135500abb4B12Ab6d4668"
+        }
+    },
+    "11155111": {
+        "realEstate": {
+            "address": "0x5c4bfA9A2fe56A662837868C02764FECC8157814"
+        },
+        "escrow": {
+            "address": "0xaa1F1deA684a44c00e2A0882be7520F22d2b8623"
         }
     }
 }

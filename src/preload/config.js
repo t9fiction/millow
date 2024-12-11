@@ -3,7 +3,7 @@ import { arbitrum, hardhat, localhost, mainnet, sepolia } from 'viem/chains'
 import { http, createConfig } from '@wagmi/core'
 
 export const publicClient = createPublicClient({
-    chain: hardhat,
+    chain: sepolia,
     transport: http(),
   })
 
