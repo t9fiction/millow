@@ -7,7 +7,6 @@ import { useAppKitAccount } from '@reown/appkit/react';
 const Navigation = () => {
     const { open } = useAppKit()
     const { address, isConnected } = useAppKitAccount();
-    console.log(address, "Account")
 
     const connectHandler = async () => open()
 
